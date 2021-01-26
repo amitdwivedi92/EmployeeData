@@ -1,0 +1,128 @@
+﻿@model IEnumerable<EmployeeData.Models.EmployeeModel>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<div style="font-family : 'Arial'">
+    <body>
+        <div>
+            <h3>Employee</h3>
+            <hr />
+            <p class="text-right">
+                @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary" })
+            </p>
+           @* <p>@Html.ActionLink("Hello Page", "HelloPage", "Product", null, new { @class = "btn btn-primary" })</p>*@
+            <table border="1" class="table table-striped">
+                <tr>
+                    <th>
+                        <div style="text-align:center">
+                            Active
+                        </div>
+                        <style>
+                            .dot {
+                                height: 15px;
+                                width: 15px;
+                                background-color: #008000;
+                                border-radius: 50%;
+                                display: inline-block;
+                            }
+                        </style>
+                        <style>
+                            .inactivedot {
+                                height: 15px;
+                                width: 15px;
+                                background-color: #FF0000;
+                                border-radius: 50%;
+                                display: inline-block;
+                            }
+                        </style>
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailId)
+                    </th>
+                    <th>
+                        <div style="text-align:center">Gender</div>
+                    </th>
+                    <th>
+                        <div style="text-align:center">Country</div>
+                    </th>
+                    <th>
+                        Role
+                    </th>
+                    <th>
+                        <div style="text-align:center">Action</div>
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{string active = string.Empty; }
+                            @if (item.Active == true)
+                            {
+
+                                <div style="text-align:center"><span class="dot"></span></div>
+                                //active = "red";
+
+
+                            }
+                            else
+                            {
+
+                                <div style="text-align:center"><span class="inactivedot"></span></div>
+                                //active = "No";
+
+                            }
+                            <label>
+                                @active
+                            </label>
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailId)
+                        </td>
+                        <td>
+                            <div style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.EmployeeGender)</div>
+                        </td>
+                        <td>
+                            <div style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.CountriesName)</div>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleName)
+                        </td>
+                        <td>
+                            <div style="text-align:center">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })</div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+
+    </body>
+</div>
+</html>
